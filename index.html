@@ -31,8 +31,9 @@
             font-weight: bold;
 
         }
+
         .btn {
-            margin: 30px;
+            margin: 20px;
         }
 
         .calculate-age {
@@ -42,6 +43,10 @@
             font-size: 15px;
             background-color: black;
             color: wheat;
+        }
+
+        .btn-reset {
+            padding: 10px 20px;
         }
     </style>
 </head>
@@ -56,25 +61,38 @@
             <div class="btn">
                 <button type="button" class="calculate-age" onclick="calculateAge()"> Calculate Age</button>
             </div>
+            <div>
+                <button type="button" class="calculate-age btn-reset" onclick="reset()"> Reset</button>
+            </div>
+
         </div>
-        <script>
-            function calculateAge() {
-                const birthdateInput = document.getElementById('birthdate').value;
-                const birthdate = new Date(birthdateInput);
+    </div>
+    <script>
+        function calculateAge() {
+            const birthdateInput = document.getElementById('birthdate').value;
+            const birthdate = new Date(birthdateInput);
 
-                const now = new Date();
+            const now = new Date();
 
-                let age = now.getFullYear() - birthdate.getFullYear();
+            let age = now.getFullYear() - birthdate.getFullYear();
 
-                const monthDiff = now.getMonth() - birthdate.getMonth();
+            const monthDiff = now.getMonth() - birthdate.getMonth();
 
-                if (monthDiff < 0 || monthDiff == 0 && now.getDate() < birthdate.getDate()) {
-                    age--;
-                }
-
-                document.getElementById('result').innerHTML = `<b>Your Age is : ${age}</b>`;
+            if (monthDiff < 0 || monthDiff == 0 && now.getDate() < birthdate.getDate()) {
+                age--;
             }
-        </script>
+
+            const result = document.getElementById('result');
+            result.innerHTML = `<b>Your Age is : ${age}</b>`;
+        }
+
+        function reset() {
+            const birthdateInput = document.getElementById('birthdate').value;
+            const result = document.getElementById('result');
+            birthdate.value = "";
+            result.innerText = "";
+        }
+    </script>
 </body>
 
 </html>
